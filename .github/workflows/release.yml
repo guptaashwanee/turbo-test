@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main  # Or your baseBranch
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: 🏗 Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: 📦 Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Create Release Pull Request or Publish to npm
+        uses: changesets/action@v1
+        with:
+          version: bun changeset version  # Custom if needed
+          publish: bun changeset publish  # For tags; skips npm due to private: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Required for Releases and tags
