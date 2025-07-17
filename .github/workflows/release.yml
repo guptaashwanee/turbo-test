@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
       - name: 🏗 Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
@@ -27,4 +27,4 @@ jobs:
           publish: bun changeset publish  # For tags; skips npm due to private: true
           createGithubReleases: true  # Explicitly enable (default is true)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Required for Releases and tags
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # Required for Releases and tags
