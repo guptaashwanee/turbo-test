@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - main  # Or your baseBranch
+      - dev  # Or your baseBranch
 
 jobs:
   release:
