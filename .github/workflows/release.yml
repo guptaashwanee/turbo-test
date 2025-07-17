@@ -25,5 +25,6 @@ jobs:
         with:
           version: bun changeset version  # Custom if needed
           publish: bun changeset publish  # For tags; skips npm due to private: true
+          createGithubReleases: true  # Explicitly enable (default is true)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Required for Releases and tags
